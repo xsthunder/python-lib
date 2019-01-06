@@ -6,3 +6,4 @@ def filter_nan(df):
   """
   assert isinstance(df, pandas.DataFrame), "wrong type:%s, expected %s"%(type(df), pandas.DataFrame)
   return df[df.apply(lambda sr: all(map(lambda x:~numpy.isnan(x),  list(sr))), axis=1)]
+
