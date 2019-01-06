@@ -1,3 +1,4 @@
+import pandas
 def analyse_columns(df, columns=None, threshold=10):
     """
     filter len(df[column of columns].value_counts()) by threshold
@@ -11,3 +12,5 @@ def analyse_columns(df, columns=None, threshold=10):
         return l
     else :
         return list(filter(lambda x: len(x) < threshold, l))
+
+    
