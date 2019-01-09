@@ -8,4 +8,4 @@ def merge_sheets(excel_file):
     return reduce(lambda x,y: x.append(y), dfs)
 
 def read_df_arr(ef_arr):
-    df_arr = list(map(lambda x:x.parse(x.sheet_names[0],dtype=object), ef_arr))
+    return list(map(lambda x:x.parse(x.sheet_names[0],dtype=object), ef_arr))
