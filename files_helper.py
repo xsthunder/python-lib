@@ -13,5 +13,7 @@ def read_excel_file_name(dir = './', contains=['.xlsx'], notcontains=['~$']):
     return path_arr,name_arr
 
 def read_ef_arr(path_arr):
-    ef_arr = list(map(pd.ExcelFile, path_arr))
+    return list(map(pd.ExcelFile, path_arr))
 
+
+    
