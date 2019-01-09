@@ -2,7 +2,7 @@ from os import listdir
 from os.path import isfile, join
 import pandas as pd
 
-def read_excel_file_name(dir = './', contains=['.xlsx'], notcontains=[''~$'']):
+def read_excel_file_name(dir = './', contains=['.xlsx'], notcontains=['~$']):
     arr = listdir(dir)
     for s in contains:
         arr = list(filter(lambda x: x.find(s)>=0,arr))
