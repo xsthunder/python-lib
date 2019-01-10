@@ -11,7 +11,7 @@ def filter_nan(df):
 
 def filter_has_nan(df):
     """
-    return series indicating dataframe consisting rows which don't contain nan value
+    return series indicating dataframe consisting rows which contain any nan value
     you may use df[ret]
     support array bool op such as &
     """
