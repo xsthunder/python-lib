@@ -6,7 +6,7 @@ def is_nan(x, empty_str_as_nan = True, on_unknow_type = True):
             return x == ''
         else :
             return False
-    if( isinstanc(x, numpy.float) ):
+    if( isinstance(x, numpy.float) ):
         return numpy.isnan(x)
     return on_unknow_type
 
