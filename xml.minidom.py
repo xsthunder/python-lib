@@ -13,3 +13,5 @@ paragraph = doc.getElementsByTagName("p")[0]
 content = paragraph.firstChild.data
 
 print(content)
+
+# This would raise an exception on common HTML entities such as &nbsp; or &reg;.
