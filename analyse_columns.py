@@ -1,5 +1,5 @@
 import pandas
-def analyse_columns(df, columns=None, threshold=10):
+def analyse_columns(df, columns=None, threshold=-1):
     """
     filter len(df[column of columns].value_counts()) by threshold
     will not filter if threshold < 0
