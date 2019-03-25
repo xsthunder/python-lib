@@ -1,6 +1,6 @@
 import numpy
 import pandas
-def is_nan(x, empty_str_as_nan = True, on_unknow_type = True):
+def isnan(x, empty_str_as_nan = True, on_unknow_type = True):
     if( isinstance(x, str) ):
         if(empty_str_as_nan):
             return x == ''
