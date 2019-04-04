@@ -26,3 +26,7 @@ def merge_sheets(excel_file):
 
 def read_df_arr(ef_arr):
     return list(map(lambda x:x.parse(x.sheet_names[0],dtype=object), ef_arr))
+
+# name_arr, path_arr = read_excel_file_name()
+# ef_arr = read_ef_arr(path_arr)
+# df_arr = read_df_arr(ef_arr)
