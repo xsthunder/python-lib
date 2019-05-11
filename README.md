@@ -7,7 +7,7 @@ useful python pieces of code
 python don't allow dash `-` in import, so we'll rename it.
 
 ```bash
-git clone --depth=1 git@github.com:xsthunder/python-lib.git xs_python_lib
+git clone --depth=1 https://github.com/xsthunder/python-lib.git
 ```
 
 or 
