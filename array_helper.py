@@ -1,3 +1,4 @@
+from functools import reduce
 def flatten_array(array):
     """
     @params array, dim >=2
