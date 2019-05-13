@@ -14,7 +14,9 @@ def __smooth_curve(points, factor = 0.9):
 def graph_on_train_val_metric(history_dict, metric, smooth_curve=False, subplt=plt):
     """
     绘制训练和验证任意指标
-    history = model.fit(...)
+    @parmas hisotry_dict:hisotry.history
+    @parmas metric:string, name of find in history_dict
+    @return plot
     ------
     %matplotlib inline
     plt = graph_on_train_val_metric(history_dict, 'loss') # 等价于 graph_on_train_val_loss(history_dict)
@@ -45,14 +47,19 @@ def graph_on_train_val_metric(history_dict, metric, smooth_curve=False, subplt=p
 
 from functools import reduce
 
-def graph_on_train_val(model, history_dict, smooth_curve=False, return_fig=False):
+def graph_on_train_val(model, history, smooth_curve=False, return_fig=False):
     """
     绘制训练损失和验证全部指标，画在一张图中，布局1 * len(metrics)
+    @parmas model:model or model.metrics_name
+    @parmas hisotry:hisotry or hisotry.history
+    @return plot
+    ----
     history = model.fit(...)
     %matplotlib inline
     metric2plt = graph_on_train_val(model, history.history,)
     """
-    metrics_names = model.metrics_names
+    metrics_names =  model if isinstance(model, list) else  model.metrics_names
+    history_dict = history if isinstance(history, dict) else history.history
     ncol = len(metrics_names)
     fig, m_axs = plt.subplots(1, ncol, figsize = (20, 3*ncol)) # 每一张子图交给graph_on_train_val_metric
     if not isinstance(m_axs, np.ndarray):
