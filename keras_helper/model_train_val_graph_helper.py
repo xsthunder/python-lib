@@ -45,19 +45,20 @@ def graph_on_train_val_metric(history_dict, metric, smooth_curve=False, subplt=p
 
 from functools import reduce
 
-def graph_on_train_val(model, history_dict, smooth_curve=False):
+def graph_on_train_val(model, history_dict, smooth_curve=False, return_fig=False):
     """
-    绘制训练损失和验证全部指标
+    绘制训练损失和验证全部指标，画在一张图中，布局1 * len(metrics)
     history = model.fit(...)
     %matplotlib inline
     metric2plt = graph_on_train_val(model, history.history,)
     """
     metrics_names = model.metrics_names
     ncol = len(metrics_names)
-    fig, m_axs = plt.subplots(1, ncol, figsize = (20, 3*ncol))
+    fig, m_axs = plt.subplots(1, ncol, figsize = (20, 3*ncol)) # 每一张子图交给graph_on_train_val_metric
     if not isinstance(m_axs, np.ndarray):
         m_axs = [m_axs]
     def f(i, m):
         plt = graph_on_train_val_metric(history_dict, m, smooth_curve, subplt=m_axs[i])
     list(map(lambda tp:f(*tp), enumerate(metrics_names)))
-    return fig
+    if return_fig:# 避免jupyter重新画
+        return fig
