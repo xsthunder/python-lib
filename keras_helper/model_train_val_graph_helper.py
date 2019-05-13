@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def __smooth_curve(points, factor = 0.9):
     smoothed_points = []
@@ -10,7 +11,7 @@ def __smooth_curve(points, factor = 0.9):
             smoothed_points.append(point)
     return smoothed_points
 
-def graph_on_train_val_metric(history_dict, metric, smooth_curve=False):
+def graph_on_train_val_metric(history_dict, metric, smooth_curve=False, subplt=plt):
     """
     绘制训练和验证任意指标
     history = model.fit(...)
@@ -29,55 +30,34 @@ def graph_on_train_val_metric(history_dict, metric, smooth_curve=False):
         metric = __smooth_curve(metric)
         val_metric = __smooth_curve(val_metric)
 
-    plt.plot(epochs, metric, 'bo', label='Training %s'%metric_name)
-    plt.plot(epochs, val_metric, 'b', label='Validation %s'%metric_name)
-    plt.title('Traininig and validation %s'%metric_name)
-    plt.xlabel('Epochs')
-    plt.ylabel(metric_name)
-    plt.legend()
-    return plt
+    subplt.plot(epochs, metric, 'bo', label='Training %s'%metric_name)
+    subplt.plot(epochs, val_metric, 'b', label='Validation %s'%metric_name)
+    if subplt is plt :
+        subplt.title('Traininig and validation %s'%metric_name)
+        subplt.xlabel('Epochs')
+        subplt.ylabel(metric_name)
+    else :
+        subplt.set_title('Traininig and validation %s'%metric_name)
+        subplt.set_xlabel('Epochs')
+        subplt.set_ylabel(metric_name)
+    subplt.legend()
+    return subplt
 
 from functools import reduce
 
-def graph_on_train_val(model, history_dict, show=True, smooth_curve=False):
+def graph_on_train_val(model, history_dict, smooth_curve=False):
     """
-    绘制训练损失和验证全部指标，自动展现
+    绘制训练损失和验证全部指标
     history = model.fit(...)
     %matplotlib inline
     metric2plt = graph_on_train_val(model, history.history,)
     """
-    def f(ac, m):
-        plt = graph_on_train_val_metric(history_dict, m, smooth_curve)
-        if show:
-            plt.show()
-        ac[m] = plt
-        return ac
-    ret = reduce(f, model.metrics_names, {})
-    return ret
-
-def graph_on_train_val_loss(history_dict):
-    """
-    绘制训练和验证损失
-    history = model.fit(...)
-    history_dictt = history.history
-    ------
-    %matplotlib inline
-    plt = graph_on_train_val_loss(history_dict)
-    plt.show()
-    """
-    plt = graph_on_train_val_metric(history_dict, 'loss', smooth_curve)
-    return plt
-
-def graph_on_train_val_acc(history_dict,smooth_curve=False):
-    """
-    绘制训练和验证正确率
-    history = model.fit(...)
-    history_dictt = history.history
-    ------
-    %matplotlib inline
-    plt = graph_on_train_val_acc(history_dict)
-    plt.show()
-    """
-    plt = graph_on_train_val_metric(history_dict, 'acc', smooth_curve)
-    return plt
-
+    metrics_names = model.metrics_names
+    ncol = len(metrics_names)
+    fig, m_axs = plt.subplots(1, ncol, figsize = (20, 3*ncol))
+    if not isinstance(m_axs, np.ndarray):
+        m_axs = [m_axs]
+    def f(i, m):
+        plt = graph_on_train_val_metric(history_dict, m, smooth_curve, subplt=m_axs[i])
+    list(map(lambda tp:f(*tp), enumerate(metrics_names)))
+    return fig
