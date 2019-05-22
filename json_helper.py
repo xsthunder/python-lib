@@ -5,4 +5,4 @@ def save_as_json(obj,file_name, ensure_ascii=False):
 def sample_dict(dic, count=5):
     return list(dic.items())[:count]
 def load_as_json(file_name):
-    jy = json.load(open(file_name))
+    return json.load(open(file_name))
