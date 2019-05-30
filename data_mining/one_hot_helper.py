@@ -37,3 +37,38 @@ def labels_value_counts(labels, sort_values=True, ascending=False):
     srvc = sr.value_counts()
     if(sort_values):srvc=srvc.sort_values(ascending=ascending)
     return srvc
+
+
+# start binary helper
+def mutilclass2binary(y, threshold):
+    tmp_test = np.apply_along_axis(np.argmax, -1, y)
+    l = len(y)
+#     print(l)
+    y = np.zeros(shape=(l))
+    for i in range(l):
+        y[i] = 0 if tmp_test[i] <=threshold else 1
+    return y
+
+def binary_predict2onehot(binary_y):
+    rounded_binary_y = np.apply_along_axis(np.round, -1, binary_y)
+    l = len(binary_y)
+    y = np.zeros(shape=(l, 2))
+    for i,x in enumerate(rounded_binary_y):
+        y[i][int(x)] = 1
+    return y
+# end binary helper
+
+# start class regression helper
+
+def onehot2regression(y):
+    return one_hot_labels2neat_sparse_label(y)
+
+def regression2onehot(regression_y, category_type=6):
+    l = len(regression_y)
+    zeroes_y = np.zeros(shape=(l, category_type))
+    rounded_regression_y = np.apply_along_axis(np.round, -1, regression_y)
+    for i in range(l):
+        zeroes_y[i][int(rounded_regression_y[i])] = 1.0
+    return zeroes_y
+# start class regression helper
+
