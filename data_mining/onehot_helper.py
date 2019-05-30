@@ -1,5 +1,5 @@
 from pandas import Series
-def one_hot_labels2neat_sparse_label(labels):
+def onehot_labels2neat_sparse_label(labels):
     """
     get neat interger class number by argmax()
     @params labels: np.ndarray
@@ -7,14 +7,14 @@ def one_hot_labels2neat_sparse_label(labels):
     arr_label = np.apply_along_axis(lambda row:row.argmax(), 1, labels,)
     return arr_label
 
-def one_hot_predict_labels2value_count(labels):
+def onehot_predict_labels2value_count(labels):
     """
     get neat interger class number by argmax(), and value count then
     @params labels: np.ndarray
     """
     return labels_value_counts(one_hot_predict_labels2neat_sparse_label(labels))
 
-def one_hot_model2value_count(model, X):
+def onehot_model2value_count(model, X):
     """
     predict and value count the predicted class
     """
