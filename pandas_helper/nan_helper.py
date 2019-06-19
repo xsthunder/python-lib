@@ -12,6 +12,7 @@ def isnan(x, empty_str_as_nan = True, on_unknow_type = True):
 
 def filter_nan(df,empty_str_as_nan = True, on_unknow_type = True):
     """
+    or use df.dropna()
     return series indicating dataframe consisting rows which don't contain nan value
     you may use df[ret]
     support array bool op such as &
