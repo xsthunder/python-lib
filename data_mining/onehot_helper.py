@@ -1,5 +1,10 @@
 from pandas import Series
 import numpy as np
+from keras.utils.np_utils import to_categorical
+
+def neat_sparse_label2onehot(y):
+    return to_categorical(y)
+
 def onehot_labels2neat_sparse_label(labels):
     """
     get neat interger class number by argmax()
