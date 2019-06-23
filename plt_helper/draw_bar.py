@@ -1,3 +1,4 @@
+import numpy as np
 def __draw_bar(_m_axs, count_column_name, count):
     _m_axs.set_title(count_column_name, )
     _m_axs.bar(np.arange(len(count)) + 0.5, count)
