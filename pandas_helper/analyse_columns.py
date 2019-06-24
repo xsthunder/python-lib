@@ -1,4 +1,7 @@
 import pandas
+import pandas as pd
+import numpy as np
+import numpy
 def analyse_columns(df, columns=None, threshold=-1):
     """
     filter len(df[column of columns].value_counts()) by threshold
