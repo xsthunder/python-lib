@@ -19,7 +19,7 @@ class elementary_matrix:
         I[j][i] = 1
         return I
 
-    def row_multiplikation(self, i, k):
+    def row_multiplication(self, i, k):
         """
         kR_i \rightarrow R_i,\ \mbox{where } k \neq 0
         """
