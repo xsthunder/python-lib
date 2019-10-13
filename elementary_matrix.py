@@ -23,7 +23,6 @@ class elementary_matrix:
         """
         kR_i \rightarrow R_i,\ \mbox{where } k \neq 0
         """
-        i -= 1
         I = np.identity(self.NUM_N).astype(int)
         I[i][i] *= k
         return I
