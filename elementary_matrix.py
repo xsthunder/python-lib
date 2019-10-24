@@ -1,7 +1,9 @@
 # 初等行变换
 import numpy as np
 class elementary_matrix:
-    
+    """
+    https://github.com/xsthunder/python-lib/blob/master/elementary_matrix.py
+    """
     def __init__(self, n):
         # 矩阵阶数
         self.NUM_N = n
@@ -23,7 +25,9 @@ class elementary_matrix:
         """
         kR_i \rightarrow R_i,\ \mbox{where } k \neq 0
         """
-        I = np.identity(self.NUM_N).astype(int)
+        I = np.identity(self.NUM_N)
+        if isinstance(k, int):
+            I = I.astype(int)
         I[i][i] *= k
         return I
 
@@ -33,6 +37,8 @@ class elementary_matrix:
         """
         i -= 1
         j -= 1
-        I = np.identity(self.NUM_N).astype(int)
+        I = np.identity(self.NUM_N)
+        if isinstance(k, int):
+            I = I.astype(int)
         I[j][i] = k
         return I
