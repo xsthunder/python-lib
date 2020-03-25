@@ -1,5 +1,5 @@
 # python-lib
-useful python pieces of code
+useful python pieces of code, outdated, see [xsthunder/xs_lib](https://github.com/xsthunder/xs_lib) for latest lib.
 
 ## usage
 
